@@ -49,6 +49,9 @@ export default async function BlogPage() {
     return dateB - dateA;
   });
 
+  const recentPosts = sortedPosts.slice(0, 3);
+  const restPosts = sortedPosts.slice(3);
+
   return (
     <main className="min-h-screen bg-white">
       <Navigation />
@@ -108,34 +111,19 @@ export default async function BlogPage() {
                       <div className="font-bold text-[#080808] text-[85px] leading-[88.41px] tracking-[0.85px] w-full">New</div>
                     </div>
                     <div className="flex flex-col gap-5 w-full">
-                      {/* Example list items, you can map your posts here */}
-                      <div className="flex flex-col-reverse gap-[14.98px] pb-[22px] w-full border-b-2 border-black">
-                        <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Inside Webflow</div>
-                        <div className="font-bold text-[#080808] text-[35.99px] leading-[38.49px] tracking-[0.74px] w-full">
-                          <p className="mb-0">Blending content and</p>
-                          <p className="mb-0">ecommerce: How Webflow</p>
-                          <p className="mb-0">Apps help businesses</p>
-                          <p className="mb-0">deliver powerful digital</p>
-                          <p>experiences</p>
+                      {/* Map recent posts here */}
+                      {recentPosts.map((post: any) => (
+                        <div key={post.sys.id} className="flex flex-col-reverse gap-[14.98px] pb-[22px] w-full border-b-2 border-black">
+                          <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">
+                            {post.fields.category && post.fields.category[0]?.fields?.name}
+                          </div>
+                          <div className="font-bold text-[#080808] text-[35.99px] leading-[38.49px] tracking-[0.74px] w-full">
+                            <Link href={`/blog/${post.fields.id || post.sys.id}`}>
+                              <p className="mb-0">{post.fields.title}</p>
+                            </Link>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex flex-col-reverse gap-[14.98px] pb-[22px] w-full border-b-2 border-black">
-                        <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Engineering</div>
-                        <div className="font-bold text-[#080808] text-[34.98px] leading-[38.49px] tracking-[0.74px] w-full">
-                          <p className="mb-0">Celebrating Disability Pride</p>
-                          <p className="mb-0">Month: Building for</p>
-                          <p>everyone, by everyone</p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col-reverse gap-[15.23px] pb-5 w-full">
-                        <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Inside Webflow</div>
-                        <div className="font-bold text-[#080808] text-[33.82px] leading-[38.49px] tracking-[0.74px] w-full">
-                          <p className="mb-0">Behind the build: Inside the</p>
-                          <p className="mb-0">minds of our Webflow x</p>
-                          <p className="mb-0">GSAP Community</p>
-                          <p>Challenge winners</p>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -272,7 +260,7 @@ export default async function BlogPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {sortedPosts.map((post: any) => (
+            {restPosts.map((post: any) => (
               <article key={post.sys.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow flex flex-col">
                 {/* Image Placeholder */}
                 <div className="aspect-[4/2] bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
