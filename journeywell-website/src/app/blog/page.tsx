@@ -110,18 +110,31 @@ export default async function BlogPage() {
                     <div className="flex flex-col w-full">
                       <div className="font-bold text-[#080808] text-[85px] leading-[88.41px] tracking-[0.85px] w-full">New</div>
                     </div>
-                    <div className="flex flex-col gap-5 w-full">
-                      {/* Map recent posts here */}
+                    {/* Horizontally scrollable cards for recent posts */}
+                    <div className="flex flex-row gap-6 w-full overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-blue-200">
                       {recentPosts.map((post: any) => (
-                        <div key={post.sys.id} className="flex flex-col-reverse gap-[14.98px] pb-[22px] w-full border-b-2 border-black">
-                          {/* Category above title */}
-                          <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">
-                            {post.fields.category && post.fields.category[0]?.fields?.name}
+                        <div key={post.sys.id} className="min-w-[300px] max-w-[320px] bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-shadow flex flex-col cursor-pointer">
+                          {/* Image Placeholder */}
+                          <div className="aspect-[4/2] bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center rounded-t-2xl">
+                            <span className="text-4xl">📰</span>
                           </div>
-                          <div className="font-bold text-[#080808] text-[35.99px] leading-[38.49px] tracking-[0.74px] w-full">
-                            <Link href={`/blog/${post.fields.id || post.sys.id}`}>
-                              <p className="mb-0">{post.fields.title}</p>
-                            </Link>
+                          <div className="p-4 flex-1 flex flex-col">
+                            {/* Category */}
+                            {post.fields.category && post.fields.category.length > 0 && (
+                              <span className="inline-block mb-2 px-3 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700">
+                                {post.fields.category[0]?.fields?.name || 'Category'}
+                              </span>
+                            )}
+                            {/* Title */}
+                            <h3 className="text-lg font-bold mb-2">
+                              <Link href={`/blog/${post.fields.id || post.sys.id}`}>{post.fields.title}</Link>
+                            </h3>
+                            {/* Author and Date */}
+                            <div className="flex items-center gap-2 mt-auto">
+                              <span className="text-xs text-gray-500">By {post.fields.author?.fields?.name || 'Unknown'}</span>
+                              <span className="text-xs text-gray-400">•</span>
+                              <span className="text-xs text-gray-500">{post.fields.postDate ? formatDate(post.fields.postDate) : ''}</span>
+                            </div>
                           </div>
                         </div>
                       ))}
