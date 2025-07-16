@@ -1,397 +1,323 @@
-import { Navigation } from '@/components/layout/Navigation'
-import { Footer } from '@/components/layout/Footer'
-import { Button } from '@/components/ui/Button'
-import Link from 'next/link'
-import { getBlogPosts } from '@/lib/sanity'
-import { urlFor } from '@/lib/sanity'
-import { BlogPost } from '@/types/sanity'
+import { Navigation } from '@/components/layout/Navigation';
+import { Footer } from '@/components/layout/Footer';
+import Link from 'next/link';
+import { getBlogPosts } from '@/lib/getBlogPosts';
 
-// This is now a server component that fetches real data
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+const categories = [
+  { name: 'Design', slug: 'design' },
+  { name: 'Development', slug: 'development' },
+  { name: 'Engineering', slug: 'engineering' },
+  { name: 'Inside Webflow', slug: 'inside-webflow' },
+  { name: 'Inspiration', slug: 'inspiration' },
+  { name: 'Strategy', slug: 'strategy' },
+];
+
+const img686Eb75Ea0F3E6Bf9031D520BlogIx3Hero2400X1260Jpg = "http://localhost:3845/assets/f79d5e537d0ebb9809dbb9322acbfad74dc2bfc7.png";
+const img6741169B9Ee6142D1B12694DEngineeringDesignBlogHeader2400X126012P2000Png = "http://localhost:3845/assets/b08ebe9d5a13aaa1a5c5854d47849bae9580192a.png";
+const img681939F9B63D135342853E40OptimizeBlogHeader2400X12602P2000Png = "http://localhost:3845/assets/e6487e41b21958747a13928605b6be33d31b89fc.png";
+const img680116B5B8Bef00A95Aed7D9BlogHeader2400X1260P2000Webp = "http://localhost:3845/assets/0c7f547542354ceded69b72982197ce1e9608c00.png";
+const img67F419C033E1E75288Da2F59651Ed3B1B771Fd2Bb0Bcc2C5BlogHeader11BestFontsForWebDesign2400X1260Jpeg = "http://localhost:3845/assets/71c6ebd35782a4c9e71fa5547bc3403dc9176d13.png";
+const img671832B8E6Bd637B8D9Dcac1Composable20CmsDesignBlogHeader072400X126017Png = "http://localhost:3845/assets/49d25a8fbd512db2b2184bf05d1dbf65ef64e1fe.png";
+
 export default async function BlogPage() {
-  // Fetch real blog posts from Sanity
-  const posts = await getBlogPosts()
-  
-  // Get featured post (first one marked as featured, or first post)
-  const featuredPost = posts.find((post: BlogPost) => post.featured) || posts[0]
-  
-  // Get remaining posts for the grid
-  const otherPosts = posts.filter((post: BlogPost) => post._id !== featuredPost?._id)
+  const posts = await getBlogPosts();
+  if (!posts || posts.length === 0) {
+    return (
+      <main className="min-h-screen bg-white">
+        <Navigation />
+        <section className="py-20 max-w-4xl mx-auto px-6 text-center">
+          <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
+          <p>No posts found.</p>
+        </section>
+        <Footer />
+      </main>
+    );
+  }
+
+  // Sort posts by postDate descending
+  const sortedPosts = posts.slice().sort((a: any, b: any) => {
+    const dateA = new Date(a.fields.postDate || 0).getTime();
+    const dateB = new Date(b.fields.postDate || 0).getTime();
+    return dateB - dateA;
+  });
 
   return (
     <main className="min-h-screen bg-white">
       <Navigation />
-      
-      {/* Hero Section */}
-      <section 
-        className="py-20 relative overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, #F8FAFC 0%, #E5E7EB 100%)'
-        }}
-      >
-        <div 
-          className="absolute inset-0"
-          style={{ backgroundColor: 'rgba(37, 99, 235, 0.05)' }}
-        />
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h1 
-              className="text-4xl md:text-6xl font-bold mb-6"
-              style={{ color: '#111827' }}
-            >
-              Stories from the
-              <span style={{ color: '#2563eb' }}> Heart of Louisiana</span>
-            </h1>
-            <p 
-              className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed"
-              style={{ color: '#6B7280' }}
-            >
-              Discover the businesses, creators, and innovators shaping Baton Rouge's creative landscape.
-            </p>
-          </div>
-
-          {/* Featured Article - Real Content */}
-          {featuredPost && (
-            <div className="max-w-4xl mx-auto">
-              <div 
-                className="group bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #E5E7EB',
-                  borderRadius: '16px',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-                }}
-              >
-                <div className="grid md:grid-cols-2 gap-0">
-                  {/* Featured Image */}
-                  <div className="relative aspect-[4/3] md:aspect-auto">
-                    {featuredPost.mainImage ? (
-                      <img
-                        src={urlFor(featuredPost.mainImage).width(600).height(400).url()}
-                        alt={featuredPost.mainImage.alt || featuredPost.title}
-                        className="absolute inset-0 w-full h-full object-cover"
+      {/* Figma Hero/Featured Section */}
+      <div className="relative w-full" style={{ minHeight: 800 }}>
+        <div className="relative w-full">
+          <div className="flex flex-col items-start justify-start pb-10 pt-[39px] px-20 w-full">
+            <div className="flex flex-col items-start justify-start max-w-[1280px] w-[1280px] mx-auto">
+              <div className="flex flex-row gap-12 items-end justify-center w-full">
+                {/* Left: Featured Image and Text */}
+                <div className="flex flex-col h-[781px] items-start justify-start w-[748.8px]">
+                  <div className="flex flex-col gap-0.5 items-start justify-start w-full">
+                    <div className="h-[396.86px] overflow-clip w-full relative">
+                      <div
+                        className="absolute inset-0 bg-no-repeat bg-top"
+                        style={{ backgroundImage: `url('${img686Eb75Ea0F3E6Bf9031D520BlogIx3Hero2400X1260Jpg}')`, backgroundSize: 'cover' }}
                       />
-                    ) : (
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center"
-                        style={{ backgroundColor: '#F3F4F6' }}
-                      >
-                        <div className="text-center">
-                          <div className="text-4xl mb-2">📝</div>
-                          <div style={{ color: '#6B7280' }}>Featured Article</div>
+                    </div>
+                    <div className="bg-[#080808] h-[366.59px] w-full relative">
+                      <div className="absolute flex flex-col items-start left-12 right-12 top-[78.545px]">
+                        <div className="flex flex-col font-bold leading-[49.92px] text-white text-[44.44px] tracking-[0.48px]">
+                          <p className="mb-0">Unlock GSAP-powered</p>
+                          <p>motion — visually in Webflow</p>
                         </div>
                       </div>
-                    )}
-                    
-                    {/* Category Tag */}
-                    {featuredPost.categories && featuredPost.categories.length > 0 && (
-                      <div className="absolute top-4 left-4">
-                        <span 
-                          className="px-3 py-1 text-sm font-medium"
-                          style={{
-                            backgroundColor: '#2563eb',
-                            color: '#FFFFFF',
-                            borderRadius: '6px'
-                          }}
-                        >
-                          {featuredPost.categories[0].title}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Article Content */}
-                  <div style={{ padding: '32px' }}>
-                    <div className="space-y-4">
-                      <h2 
-                        className="text-2xl md:text-3xl font-semibold leading-tight group-hover:text-blue-600 transition-colors"
-                        style={{ 
-                          color: '#111827',
-                          fontWeight: '600'
-                        }}
-                      >
-                        {featuredPost.title}
-                      </h2>
-                      
-                      <p 
-                        className="text-lg leading-relaxed"
-                        style={{ 
-                          color: '#6B7280',
-                          lineHeight: '1.6'
-                        }}
-                      >
-                        {featuredPost.excerpt}
-                      </p>
-                      
-                      <div className="flex items-center justify-between pt-4">
-                        <div className="flex items-center space-x-4">
-                          <span 
-                            className="text-sm"
-                            style={{ color: '#9CA3AF', fontSize: '14px' }}
-                          >
-                            By {featuredPost.author.name}
-                          </span>
-                          <span 
-                            className="text-sm"
-                            style={{ color: '#9CA3AF', fontSize: '14px' }}
-                          >
-                            {featuredPost.readTime} min read
-                          </span>
+                      <div className="absolute flex flex-col items-start left-12 right-12 top-[194.2px]">
+                        <div className="flex flex-col font-normal leading-[28.8px] text-white text-[18px]">
+                          <p className="mb-0">Unlock visual-first motion development, a new horizontal timeline, reusable</p>
+                          <p className="mb-0">interactions, & more with Webflow’s newest version of Interactions, powered</p>
+                          <p>by GSAP.</p>
                         </div>
-                        
-                        <Button variant="primary" size="medium" asChild>
-                          <Link href={`/blog/${featuredPost.slug.current}`}>
-                            Read Story →
-                          </Link>
-                        </Button>
+                      </div>
+                      <div className="absolute flex flex-row items-center left-12 right-12 top-[296.79px]">
+                        <div className="flex flex-col pr-[3.2px]">
+                          <div className="font-bold text-white text-[16px] tracking-[0.32px] leading-[20.8px]">by</div>
+                        </div>
+                        <div className="flex flex-col pb-[0.8px]">
+                          <div className="font-bold text-white text-[15px] tracking-[0.32px] leading-[20.8px]">Caroline Ren</div>
+                        </div>
+                        <div className="flex flex-col pr-[3.2px]">
+                          <div className="font-bold text-white text-[16px] tracking-[0.32px] leading-[20.8px]">,</div>
+                        </div>
+                        <div className="flex flex-col pb-[0.8px]">
+                          <div className="font-bold text-white text-[15.25px] tracking-[0.32px] leading-[20.8px]">Emma Genesen</div>
+                        </div>
+                      </div>
+                      <div className="absolute flex flex-col items-start left-12 right-12 top-12">
+                        <div className="font-normal text-white text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Inside Webflow</div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Main Content Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-4 gap-12">
-            {/* Main Content */}
-            <div className="lg:col-span-3">
-              {/* Recent Articles Header */}
-              <div className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Recent Articles</h2>
-                <p className="text-gray-600">Latest insights and stories from the Baton Rouge business community</p>
-              </div>
-
-              {/* Articles Grid - Real Content */}
-              {otherPosts.length > 0 ? (
-                <div className="grid md:grid-cols-2 gap-8">
-                                     {otherPosts.map((post: BlogPost) => (
-                    <article 
-                      key={post._id}
-                      className="group bg-white rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                      style={{
-                        backgroundColor: '#FFFFFF',
-                        border: '1px solid #E5E7EB',
-                        borderRadius: '12px',
-                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
-                      }}
-                    >
-                      {/* Image */}
-                      <div className="relative aspect-video overflow-hidden">
-                        {post.mainImage ? (
-                          <img
-                            src={urlFor(post.mainImage).width(400).height(225).url()}
-                            alt={post.mainImage.alt || post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        ) : (
-                          <div 
-                            className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center"
-                            style={{ backgroundColor: '#F3F4F6' }}
-                          >
-                            <div className="text-center">
-                              <div className="text-2xl mb-2">📰</div>
-                              <div style={{ color: '#6B7280' }}>Article</div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Content */}
-                      <div style={{ padding: '24px' }}>
-                        <div className="space-y-3">
-                          {/* Category Tag */}
-                          {post.categories && post.categories.length > 0 && (
-                            <span 
-                              className="inline-block px-2 py-1 text-xs font-medium rounded"
-                              style={{
-                                backgroundColor: '#EEF2FF',
-                                color: '#3730A3',
-                                borderRadius: '4px',
-                                padding: '4px 8px'
-                              }}
-                            >
-                              {post.categories[0].title}
-                            </span>
-                          )}
-
-                          <h3 
-                            className="text-lg font-semibold leading-tight group-hover:text-blue-600 transition-colors"
-                            style={{
-                              color: '#111827',
-                              fontWeight: '600'
-                            }}
-                          >
-                            {post.title}
-                          </h3>
-
-                          <p 
-                            className="text-sm leading-relaxed"
-                            style={{
-                              color: '#6B7280',
-                              lineHeight: '1.6'
-                            }}
-                          >
-                            {post.excerpt}
-                          </p>
-
-                          <div className="flex items-center justify-between pt-2">
-                            <div className="flex items-center space-x-3">
-                              <span 
-                                className="text-xs"
-                                style={{ color: '#9CA3AF', fontSize: '14px' }}
-                              >
-                                {post.author.name}
-                              </span>
-                              <span 
-                                className="text-xs"
-                                style={{ color: '#9CA3AF', fontSize: '14px' }}
-                              >
-                                {post.readTime} min read
-                              </span>
-                            </div>
-                            
-                            <Link 
-                              href={`/blog/${post.slug.current}`}
-                              className="text-sm font-medium hover:underline transition-colors"
-                              style={{
-                                color: '#2563eb',
-                                textDecoration: 'none'
-                              }}
-                            >
-                              Read More →
-                            </Link>
-                          </div>
+                {/* Right: Sidebar "New" and List */}
+                <div className="flex flex-row items-end self-stretch">
+                  <div className="flex flex-col gap-[31.99px] h-full items-start justify-start w-[483.2px]">
+                    <div className="flex flex-col w-full">
+                      <div className="font-bold text-[#080808] text-[85px] leading-[88.41px] tracking-[0.85px] w-full">New</div>
+                    </div>
+                    <div className="flex flex-col gap-5 w-full">
+                      {/* Example list items, you can map your posts here */}
+                      <div className="flex flex-col-reverse gap-[14.98px] pb-[22px] w-full border-b-2 border-black">
+                        <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Inside Webflow</div>
+                        <div className="font-bold text-[#080808] text-[35.99px] leading-[38.49px] tracking-[0.74px] w-full">
+                          <p className="mb-0">Blending content and</p>
+                          <p className="mb-0">ecommerce: How Webflow</p>
+                          <p className="mb-0">Apps help businesses</p>
+                          <p className="mb-0">deliver powerful digital</p>
+                          <p>experiences</p>
                         </div>
                       </div>
-                    </article>
-                  ))}
+                      <div className="flex flex-col-reverse gap-[14.98px] pb-[22px] w-full border-b-2 border-black">
+                        <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Engineering</div>
+                        <div className="font-bold text-[#080808] text-[34.98px] leading-[38.49px] tracking-[0.74px] w-full">
+                          <p className="mb-0">Celebrating Disability Pride</p>
+                          <p className="mb-0">Month: Building for</p>
+                          <p>everyone, by everyone</p>
+                        </div>
+                      </div>
+                      <div className="flex flex-col-reverse gap-[15.23px] pb-5 w-full">
+                        <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Inside Webflow</div>
+                        <div className="font-bold text-[#080808] text-[33.82px] leading-[38.49px] tracking-[0.74px] w-full">
+                          <p className="mb-0">Behind the build: Inside the</p>
+                          <p className="mb-0">minds of our Webflow x</p>
+                          <p className="mb-0">GSAP Community</p>
+                          <p>Challenge winners</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ) : (
-                <div className="text-center py-12">
-                  <div className="text-6xl mb-4">📝</div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">More Articles Coming Soon</h3>
-                  <p className="text-gray-600">We're working on bringing you more great content about Baton Rouge businesses.</p>
-                </div>
-              )}
-
-              {/* Show message if only featured post exists */}
-              {posts.length === 1 && (
-                <div className="text-center py-12 bg-gray-50 rounded-xl">
-                  <div className="text-4xl mb-4">🚀</div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Just Getting Started!</h3>
-                  <p className="text-gray-600">This is our first post - more amazing content about Baton Rouge businesses is coming soon!</p>
-                </div>
-              )}
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-8">
-              {/* Newsletter Signup */}
-              <div 
-                className="rounded-2xl p-8"
-                style={{
-                  background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)'
-                }}
-              >
-                <div 
-                  className="bg-white rounded-xl p-6"
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E5E7EB',
-                    borderRadius: '16px',
-                    padding: '32px',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)'
-                  }}
-                >
-                  <h3 
-                    className="text-xl font-bold mb-3"
-                    style={{
-                      color: '#111827',
-                      fontWeight: '700'
-                    }}
-                  >
-                    Stay Connected
-                  </h3>
-                  <p 
-                    className="text-sm mb-6"
-                    style={{ color: '#6B7280' }}
-                  >
-                    Get weekly insights from Baton Rouge's creative community delivered to your inbox.
-                  </p>
-                  
-                  <form className="space-y-4">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                      style={{
-                        backgroundColor: '#F9FAFB',
-                        border: '1px solid #E5E7EB',
-                        color: '#111827',
-                        borderRadius: '8px'
-                      }}
-                    />
-                    <button 
-                      type="submit"
-                      className="w-full py-3 font-medium rounded-lg transition-colors"
-                      style={{
-                        backgroundColor: '#2563eb',
-                        color: '#FFFFFF',
-                        borderRadius: '8px'
-                      }}
-                    >
-                      Subscribe
-                    </button>
-                  </form>
-                </div>
-              </div>
-
-              {/* Categories */}
-              <div 
-                className="bg-white rounded-xl p-6"
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #E5E7EB',
-                  borderRadius: '12px',
-                  padding: '20px'
-                }}
-              >
-                <h3 
-                  className="text-lg font-semibold mb-6"
-                  style={{ color: '#111827' }}
-                >
-                  Browse Topics
-                </h3>
-                
-                <div className="space-y-3">
-                  {[
-                    'Local Business Spotlight',
-                    'Industry Insights',
-                    'Community News',
-                    'Business Resources'
-                  ].map((category) => (
-                    <Link 
-                      key={category}
-                      href={`/blog/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="block text-sm hover:text-blue-600 transition-colors"
-                      style={{ color: '#9CA3AF' }}
-                    >
-                      {category} →
-                    </Link>
-                  ))}
-                </div>
+                {/* End sidebar */}
               </div>
             </div>
           </div>
         </div>
+      </div>
+      {/* Figma Popular Section */}
+      <div className="relative w-full">
+        <div className="relative w-full">
+          <div className="flex flex-col items-start justify-start px-20 py-10 w-full">
+            <div className="flex flex-col gap-8 items-start justify-start max-w-[1280px] w-[1280px] mx-auto">
+              <div className="flex flex-col items-start w-full">
+                <div className="font-bold text-[#080808] text-[52.83px] leading-[58.24px] tracking-[0.56px] w-full">Popular</div>
+              </div>
+              <div className="flex flex-row gap-12 items-start justify-center w-full">
+                {/* Left column of popular posts */}
+                <div className="flex flex-col grow items-start justify-start self-stretch w-1/2">
+                  <div className="flex flex-col gap-0.5 items-start w-full">
+                    {/* List item 1 */}
+                    <div className="flex flex-row gap-4 items-center w-full">
+                      <div className="grow h-[159px] overflow-clip relative">
+                        <div className="absolute inset-0 bg-no-repeat bg-top" style={{ backgroundImage: `url('${img6741169B9Ee6142D1B12694DEngineeringDesignBlogHeader2400X126012P2000Png}')`, backgroundSize: 'cover' }} />
+                      </div>
+                      <div className="flex flex-col-reverse gap-4 grow px-0 py-4 w-full">
+                        <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Engineering</div>
+                        <div className="font-bold text-[#080808] text-[22.5px] leading-[31.2px] tracking-[0.48px] w-full">
+                          <p className="mb-0">How AI-powered</p>
+                          <p className="mb-0">prototyping is changing</p>
+                          <p>design at Webflow</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* List item 2 */}
+                    <div className="flex flex-row gap-4 items-center w-full">
+                      <div className="grow h-[159px] overflow-clip relative">
+                        <div className="absolute inset-0 bg-no-repeat bg-top" style={{ backgroundImage: `url('${img681939F9B63D135342853E40OptimizeBlogHeader2400X12602P2000Png}')`, backgroundSize: 'cover' }} />
+                      </div>
+                      <div className="flex flex-col-reverse gap-4 grow px-0 py-4 w-full">
+                        <div className="font-normal text-[#080808] text-[10.31px] tracking-[1.2px] uppercase leading-[15.6px]">Strategy</div>
+                        <div className="font-bold text-[#080808] text-[22.13px] leading-[31.2px] tracking-[0.48px] w-full">
+                          <p className="mb-0">The art of optimizing</p>
+                          <p>conversions for growth</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* List item 3 */}
+                    <div className="flex flex-row gap-4 items-center w-full">
+                      <div className="grow h-[159px] overflow-clip relative">
+                        <div className="absolute inset-0 bg-no-repeat bg-top" style={{ backgroundImage: `url('${img680116B5B8Bef00A95Aed7D9BlogHeader2400X1260P2000Webp}')`, backgroundSize: 'cover' }} />
+                      </div>
+                      <div className="flex flex-col-reverse gap-4 grow px-0 py-4 w-full">
+                        <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">Inside Webflow</div>
+                        <div className="font-bold text-[#080808] text-[22.13px] leading-[31.2px] tracking-[0.48px] w-full">
+                          <p className="mb-0">Webflow Conf 2025</p>
+                          <p>registration is now open</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* List item 4 */}
+                    <div className="flex flex-row gap-4 items-center w-full">
+                      <div className="grow h-[159px] overflow-clip relative">
+                        <div className="absolute inset-0 bg-no-repeat bg-top" style={{ backgroundImage: `url('${img67F419C033E1E75288Da2F59651Ed3B1B771Fd2Bb0Bcc2C5BlogHeader11BestFontsForWebDesign2400X1260Jpeg}')`, backgroundSize: 'cover' }} />
+                      </div>
+                      <div className="flex flex-col-reverse gap-4 grow px-0 py-4 w-full">
+                        <div className="font-normal text-[#080808] text-[11.06px] tracking-[1.2px] uppercase leading-[15.6px]">Design</div>
+                        <div className="font-bold text-[#080808] text-[21.56px] leading-[31.2px] tracking-[0.48px] w-full">
+                          <p className="mb-0">11 best fonts for web</p>
+                          <p>design</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Right column: Large card */}
+                <div className="flex flex-col grow items-start justify-start self-stretch w-1/2">
+                  <div className="flex flex-col gap-0.5 items-start w-full">
+                    <div className="h-[326.47px] overflow-clip w-full relative">
+                      <div className="absolute inset-0 bg-no-repeat bg-top" style={{ backgroundImage: `url('${img671832B8E6Bd637B8D9Dcac1Composable20CmsDesignBlogHeader072400X126017Png}')`, backgroundSize: 'cover' }} />
+                    </div>
+                    <div className="bg-[#ed52cb] h-[416.5px] w-full relative">
+                      <div className="absolute flex flex-col items-start left-12 right-12 top-[78.5px]">
+                        <div className="flex flex-col font-bold leading-[49.92px] text-[#080808] text-[45.19px] tracking-[0.48px]">
+                          <p className="mb-0">The next generation of</p>
+                          <p className="mb-0">CMS: A Website</p>
+                          <p>Experience Platform</p>
+                        </div>
+                      </div>
+                      <div className="absolute flex flex-col items-start left-12 right-12 top-[244.11px]">
+                        <div className="flex flex-col font-normal leading-[28.8px] text-[#080808] text-[18px]">
+                          <p className="mb-0">Content management systems are changing. Our Website</p>
+                          <p className="mb-0">Experience Platform was designed to empower businesses</p>
+                          <p>to optimize teams, resources, and time-to-market.</p>
+                        </div>
+                      </div>
+                      <div className="absolute flex flex-row items-center left-12 right-12 top-[346.7px]">
+                        <div className="flex flex-col mr-[-0.01px] pr-[3.2px]">
+                          <div className="font-bold text-[#080808] text-[16px] tracking-[0.32px] leading-[20.8px]">by</div>
+                        </div>
+                        <div className="flex flex-col mr-[-0.01px] pb-[0.8px]">
+                          <div className="font-bold text-[#080808] text-[15px] tracking-[0.32px] leading-[20.8px]">Brett Domeny</div>
+                        </div>
+                      </div>
+                      <div className="absolute flex flex-col items-start left-12 right-12 top-12">
+                        <div className="font-normal text-[#080808] text-[10.69px] tracking-[1.2px] uppercase leading-[15.6px]">Inspiration</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* End right column */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Hero Section */}
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-white border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h1 className="text-5xl font-bold mb-4">Webflow Blog</h1>
+          <p className="text-xl text-gray-600 mb-8">Stories, insights, and advice that will transform how you design and build for the web.</p>
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            {categories.map((cat) => (
+              <Link key={cat.slug} href={`/blog/category/${cat.slug}`} className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-blue-600 hover:text-white transition-colors text-sm font-medium">
+                {cat.name}
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
+      {/* Blog Posts Grid */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {sortedPosts.map((post: any) => (
+              <article key={post.sys.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow flex flex-col">
+                {/* Image Placeholder */}
+                <div className="aspect-[4/2] bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                  <span className="text-5xl">📰</span>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  {/* Category */}
+                  {post.fields.category && post.fields.category.length > 0 && (
+                    <span className="inline-block mb-2 px-3 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700">
+                      {post.fields.category[0]?.fields?.name || 'Category'}
+                    </span>
+                  )}
+                  {/* Title */}
+                  <h2 className="text-2xl font-bold mb-2">
+                    <Link href={`/blog/${post.fields.id || post.sys.id}`}>{post.fields.title}</Link>
+                  </h2>
+                  {/* Excerpt */}
+                  <p className="text-gray-600 mb-4">
+                    {post.fields.post?.content?.[0]?.content?.[0]?.value?.slice(0, 120) || ''}...
+                  </p>
+                  {/* Author and Date */}
+                  <div className="flex items-center gap-3 mt-auto">
+                    <span className="text-sm text-gray-500">By {post.fields.author?.fields?.name || 'Unknown'}</span>
+                    <span className="text-xs text-gray-400">•</span>
+                    <span className="text-sm text-gray-500">{post.fields.postDate ? formatDate(post.fields.postDate) : ''}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="py-16 bg-blue-50 border-t border-b border-blue-100">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">Unlock exclusive content</h2>
+          <p className="text-lg text-blue-900 mb-6">Subscribe for best practices, research reports, and more.</p>
+          <form className="flex flex-col sm:flex-row gap-4 justify-center">
+            <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white border-blue-200 text-gray-900" />
+            <button type="submit" className="px-8 py-3 font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">Subscribe</button>
+          </form>
+        </div>
+      </section>
       <Footer />
     </main>
-  )
+  );
 } 

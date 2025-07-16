@@ -1,0 +1,1 @@
+{"ts":"2025-07-16T19:07:55.162Z","level":"error","error":{"originalError":{},"stacktrace":["Error: TypeError: Cannot read properties of undefined (reading 'id')","/Users/tim/jw-website/node_modules/contentful-batch-libs/dist/listr.js:21:35"]}}

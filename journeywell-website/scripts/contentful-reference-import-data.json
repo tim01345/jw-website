@@ -1,0 +1,24 @@
+{
+  "entries": [
+    { "sys": { "id": "category-storytelling", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Storytelling" } } },
+    { "sys": { "id": "category-brand-development", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Brand Development" } } },
+    { "sys": { "id": "category-video-production", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Video Production" } } },
+    { "sys": { "id": "category-marketing", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Marketing" } } },
+    { "sys": { "id": "category-content-strategy", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Content Strategy" } } },
+    { "sys": { "id": "category-podcasting", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Podcasting" } } },
+    { "sys": { "id": "category-studio-life", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Studio Life" } } },
+    { "sys": { "id": "category-social-media", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Social Media" } } },
+    { "sys": { "id": "category-visual-strategy", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Visual Strategy" } } },
+    { "sys": { "id": "category-local-seo", "contentType": { "sys": { "id": "category" } } }, "fields": { "name": { "en-US": "Local SEO" } } },
+    { "sys": { "id": "industry-creative-services", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Creative Services" } } },
+    { "sys": { "id": "industry-small-business", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Small Business" } } },
+    { "sys": { "id": "industry-entrepreneurship", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Entrepreneurship" } } },
+    { "sys": { "id": "industry-real-estate", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Real Estate" } } },
+    { "sys": { "id": "industry-education", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Education" } } },
+    { "sys": { "id": "industry-nonprofit", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Nonprofit" } } },
+    { "sys": { "id": "industry-health-wellness", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Health & Wellness" } } },
+    { "sys": { "id": "industry-faith-based", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Faith-Based" } } },
+    { "sys": { "id": "industry-local-services", "contentType": { "sys": { "id": "industry" } } }, "fields": { "name": { "en-US": "Local Services" } } },
+    { "sys": { "id": "author-team-journeywell", "contentType": { "sys": { "id": "author" } } }, "fields": { "name": { "en-US": "Team JourneyWell" } } }
+  ]
+} 

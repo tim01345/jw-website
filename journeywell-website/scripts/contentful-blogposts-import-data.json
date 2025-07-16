@@ -1,0 +1,184 @@
+{
+  "entries": [
+    {
+      "sys": { "id": "blogpost-1", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 1 },
+        "postDate": { "en-US": "2025-07-16T18:35:12Z" },
+        "title": { "en-US": "How a Creative Studio Can Transform Your Brand Story" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-storytelling" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-brand-development" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-creative-services" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-small-business" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Your brand is more than a logo—it's the story you tell. At JourneyWell, we help small businesses and creative professionals build a visual identity that connects. As a full-service creative studio in Baton Rouge, we bring clarity, storytelling, and strategy into every project. Whether you're launching a new brand or refreshing an old one, our media services—from video to podcasting—are designed to align your vision with visuals that move people. Discover how purpose-driven storytelling can position your business for growth.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-2", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 2 },
+        "postDate": { "en-US": "2025-07-09T18:35:12Z" },
+        "title": { "en-US": "Top Video Marketing Trends for 2025" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-video-production" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-marketing" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-entrepreneurship" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-real-estate" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Video continues to dominate marketing in 2025. From vertical reels to long-form YouTube, brands that embrace video see higher engagement and ROI. At JourneyWell, we help entrepreneurs, realtors, and agencies in Baton Rouge stay ahead with high-quality, strategic content. Think dynamic testimonials, behind-the-scenes footage, and educational reels—all crafted for conversions. Want to know what's next in video? This blog breaks down trends like AI editing, SEO video metadata, and content repurposing across platforms.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-3", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 3 },
+        "postDate": { "en-US": "2025-07-02T18:35:12Z" },
+        "title": { "en-US": "The Power of Podcasting for Your Business" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-content-strategy" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-podcasting" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-creative-services" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-education" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Podcasting is no longer a trend—it's a powerful brand tool. Whether you're a nonprofit, educator, or entrepreneur, a podcast positions you as a thought leader. JourneyWell’s podcast studio in Baton Rouge offers professional production that amplifies your voice. From content planning to editing and distribution, we help you build a meaningful platform. Learn how to start a podcast that serves your audience, boosts credibility, and enhances your content strategy.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-4", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 4 },
+        "postDate": { "en-US": "2025-06-25T18:35:12Z" },
+        "title": { "en-US": "Behind the Scenes: A Day at JourneyWell Studio" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-video-production" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-studio-life" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-creative-services" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-health-wellness" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Ever wondered what it's like behind the scenes at a Baton Rouge creative studio? This blog walks you through a day at JourneyWell—from pre-production meetings to lighting setup, filming, and editing. Our team brings together strategy and creativity to craft content that matters. Whether it’s a client reel shoot, podcast session, or brand campaign, JourneyWell is where vision meets execution. Get a real look at what makes a shoot successful and why environment matters.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-5", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 5 },
+        "postDate": { "en-US": "2025-06-18T18:35:12Z" },
+        "title": { "en-US": "Why Baton Rouge Businesses Need Better Content" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-marketing" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-business-growth" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-small-business" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-local-services" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Many Baton Rouge businesses have great products—but poor content is holding them back. If your website or social media looks outdated, you're losing customers before you even meet them. JourneyWell exists to change that. We offer local video production, branding sessions, and strategy workshops to help you stand out in Louisiana’s competitive market. This blog explores the cost of bad content—and what good content can do for your growth.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-6", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 6 },
+        "postDate": { "en-US": "2025-06-11T18:35:12Z" },
+        "title": { "en-US": "From Idea to Impact: Building Your Brand with Strategy" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-brand-development" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-content-strategy" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-entrepreneurship" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-nonprofit" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Your brand starts with an idea—but how does it become a business? Strategy. At JourneyWell, we partner with founders, nonprofits, and creators to build intentional brand strategies. That means clear messaging, visual identity, and content plans that match your goals. Whether you're pre-launch or in a growth phase, this blog outlines how strategy transforms vision into impact—starting with the right questions and ending with the right audience.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-7", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 7 },
+        "postDate": { "en-US": "2025-06-04T18:35:12Z" },
+        "title": { "en-US": "What to Expect When Booking a Studio Session" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-studio-life" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-video-production" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-creative-services" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-real-estate" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Booking a studio session shouldn’t be intimidating. In this blog, we walk you through what to expect when you reserve time at JourneyWell’s creative studio in Baton Rouge. From flexible setups and lighting to professional audio and teleprompters, we’ve got you covered. Whether you’re recording a podcast, a video series, or branded content, our team supports your vision with the gear and guidance to make it easy.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-8", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 8 },
+        "postDate": { "en-US": "2025-05-28T18:35:12Z" },
+        "title": { "en-US": "Elevate Your Social Media with Professional Visuals" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-social-media" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-visual-strategy" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-faith-based" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-small-business" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Social media is noisy. To stand out, you need visuals that stop the scroll. JourneyWell helps Louisiana businesses elevate their online presence with high-quality photo and video content. From curated reels to strategic stories, we create assets that align with your message and move people to action. This blog breaks down how custom visuals boost engagement, build trust, and convert followers into clients—especially when paired with a strong CTA and SEO-friendly captions.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-9", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 9 },
+        "postDate": { "en-US": "2025-05-21T18:35:12Z" },
+        "title": { "en-US": "The Value of Local Content Production in Louisiana" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-marketing" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-local-seo" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-local-services" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-nonprofit" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "Local matters—especially when it comes to content. Many Baton Rouge and Louisiana-based companies struggle with generic visuals that don't reflect their unique identity. At JourneyWell, we specialize in local content production that feels authentic. Whether it’s your team on camera or your story in motion, we help you reach real audiences with real visuals. This blog explores the value of local shoots, regional SEO, and community-based storytelling.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    },
+    {
+      "sys": { "id": "blogpost-10", "contentType": { "sys": { "id": "blogPost" } } },
+      "fields": {
+        "id": { "en-US": 10 },
+        "postDate": { "en-US": "2025-05-14T18:35:12Z" },
+        "title": { "en-US": "JourneyWell’s Guide to High-Quality Storytelling" },
+        "author": { "en-US": { "sys": { "type": "Link", "linkType": "Entry", "id": "author-team-journeywell" } } },
+        "category": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-storytelling" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "category-brand-development" } }
+        ] },
+        "industry": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-education" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "industry-entrepreneurship" } }
+        ] },
+        "post": { "en-US": { "nodeType": "document", "data": {}, "content": [ { "nodeType": "paragraph", "content": [ { "nodeType": "text", "value": "What makes great storytelling? Clarity, purpose, and connection. In this guide, JourneyWell shares its approach to high-quality storytelling through media. Whether you're launching a nonprofit, building a business, or refreshing your brand, our process centers around intentional strategy and cinematic visuals. From scriptwriting to post-production, every frame matters. Learn how storytelling isn't just for Hollywood—it's the secret to building trust and loyalty online.", "marks": [], "data": {} } ], "data": {} } ] } }
+      }
+    }
+  ]
+} 
