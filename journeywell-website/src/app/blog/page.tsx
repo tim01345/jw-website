@@ -114,6 +114,7 @@ export default async function BlogPage() {
                       {/* Map recent posts here */}
                       {recentPosts.map((post: any) => (
                         <div key={post.sys.id} className="flex flex-col-reverse gap-[14.98px] pb-[22px] w-full border-b-2 border-black">
+                          {/* Category above title */}
                           <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">
                             {post.fields.category && post.fields.category[0]?.fields?.name}
                           </div>
