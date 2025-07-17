@@ -110,31 +110,18 @@ export default async function BlogPage() {
                     <div className="flex flex-col w-full">
                       <div className="font-bold text-[#080808] text-[85px] leading-[88.41px] tracking-[0.85px] w-full">New</div>
                     </div>
-                    {/* Horizontally scrollable cards for recent posts */}
-                    <div className="flex flex-row gap-6 w-full overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-blue-200">
+                    <div className="flex flex-col gap-5 w-full">
+                      {/* Map recent posts here */}
                       {recentPosts.map((post: any) => (
-                        <div key={post.sys.id} className="min-w-[300px] max-w-[320px] bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-shadow flex flex-col cursor-pointer">
-                          {/* Image Placeholder */}
-                          <div className="aspect-[4/2] bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center rounded-t-2xl">
-                            <span className="text-4xl">📰</span>
+                        <div key={post.sys.id} className="flex flex-col-reverse gap-[14.98px] pb-[22px] w-full border-b-2 border-black">
+                          {/* Category above title */}
+                          <div className="font-normal text-[#080808] text-[10.5px] tracking-[1.2px] uppercase leading-[15.6px]">
+                            {post.fields.category && post.fields.category[0]?.fields?.name}
                           </div>
-                          <div className="p-4 flex-1 flex flex-col">
-                            {/* Category */}
-                            {post.fields.category && post.fields.category.length > 0 && (
-                              <span className="inline-block mb-2 px-3 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700">
-                                {post.fields.category[0]?.fields?.name || 'Category'}
-                              </span>
-                            )}
-                            {/* Title */}
-                            <h3 className="text-lg font-bold mb-2">
-                              <Link href={`/blog/${post.fields.id || post.sys.id}`}>{post.fields.title}</Link>
-                            </h3>
-                            {/* Author and Date */}
-                            <div className="flex items-center gap-2 mt-auto">
-                              <span className="text-xs text-gray-500">By {post.fields.author?.fields?.name || 'Unknown'}</span>
-                              <span className="text-xs text-gray-400">•</span>
-                              <span className="text-xs text-gray-500">{post.fields.postDate ? formatDate(post.fields.postDate) : ''}</span>
-                            </div>
+                          <div className="font-bold text-[#080808] text-[35.99px] leading-[38.49px] tracking-[0.74px] w-full">
+                            <Link href={`/blog/${post.fields.id || post.sys.id}`}>
+                              <p className="mb-0">{post.fields.title}</p>
+                            </Link>
                           </div>
                         </div>
                       ))}
@@ -255,59 +242,6 @@ export default async function BlogPage() {
           </div>
         </div>
       </div>
-      {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-5xl font-bold mb-4">Webflow Blog</h1>
-          <p className="text-xl text-gray-600 mb-8">Stories, insights, and advice that will transform how you design and build for the web.</p>
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {categories.map((cat) => (
-              <Link key={cat.slug} href={`/blog/category/${cat.slug}`} className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-blue-600 hover:text-white transition-colors text-sm font-medium">
-                {cat.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Posts Grid */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {restPosts.map((post: any) => (
-              <article key={post.sys.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow flex flex-col">
-                {/* Image Placeholder */}
-                <div className="aspect-[4/2] bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                  <span className="text-5xl">📰</span>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  {/* Category */}
-                  {post.fields.category && post.fields.category.length > 0 && (
-                    <span className="inline-block mb-2 px-3 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700">
-                      {post.fields.category[0]?.fields?.name || 'Category'}
-                    </span>
-                  )}
-                  {/* Title */}
-                  <h2 className="text-2xl font-bold mb-2">
-                    <Link href={`/blog/${post.fields.id || post.sys.id}`}>{post.fields.title}</Link>
-                  </h2>
-                  {/* Excerpt */}
-                  <p className="text-gray-600 mb-4">
-                    {post.fields.post?.content?.[0]?.content?.[0]?.value?.slice(0, 120) || ''}...
-                  </p>
-                  {/* Author and Date */}
-                  <div className="flex items-center gap-3 mt-auto">
-                    <span className="text-sm text-gray-500">By {post.fields.author?.fields?.name || 'Unknown'}</span>
-                    <span className="text-xs text-gray-400">•</span>
-                    <span className="text-sm text-gray-500">{post.fields.postDate ? formatDate(post.fields.postDate) : ''}</span>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Newsletter Signup */}
       <section className="py-16 bg-blue-50 border-t border-b border-blue-100">
         <div className="max-w-2xl mx-auto px-6 text-center">

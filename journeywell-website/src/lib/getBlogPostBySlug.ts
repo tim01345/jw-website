@@ -1,10 +1,5 @@
 import client from './contentful';
 
-export async function getBlogPostBySlug(slug: string) {
-  const entries = await client.getEntries({
-    content_type: 'blogPost',
-    'fields.slug': slug,
-    limit: 1,
-  });
-  return entries.items[0];
+export async function getBlogPostById(id: string) {
+  return await client.getEntry(id);
 } 
